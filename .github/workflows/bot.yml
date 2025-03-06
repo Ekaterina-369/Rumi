@@ -27,4 +27,3 @@ jobs:
           YANDEX_API_KEY: ${{ secrets.YANDEX_API_KEY }}
         run: |
           python bot.py
-это
