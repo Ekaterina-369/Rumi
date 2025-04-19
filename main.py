@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 import requests
 import os
-from rumi_prompts import system_prompts  # подключаем Руми 🌀
+import json
 
 app = Flask(__name__)
 
@@ -9,6 +9,10 @@ YANDEX_API_KEY = os.getenv("YANDEX_API_KEY")  # ключи будут перед
 YANDEX_FOLDER_ID = os.getenv("YANDEX_FOLDER_ID")
 
 YANDEX_API_URL = "https://llm.api.cloud.yandex.net/foundationModels/v1/completion"
+
+# Загружаем данные из файла rumi_prompts.json
+with open('rumi_prompts.json', 'r', encoding='utf-8') as file:
+    system_prompts = json.load(file)  # Читаем данные из JSON файла
 
 @app.route("/ask", methods=["POST"])
 def ask():
@@ -40,3 +44,5 @@ def ask():
 
 if __name__ == "__main__":
     app.run()
+
+   
